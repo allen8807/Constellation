@@ -1,0 +1,347 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/01.jpg"><img src="Images/01.jpg" alt="白羊座" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4"><p>全天88星座及黄道十二星座之一。<BR>
+      </p>
+      <DIV></DIV>
+      　　
+            　
+      中心位置赤经2时40分，赤纬21°。α星为二等星，共有亮于四等的星5颗。<BR>
+      <DIV></DIV>
+      　　
+      β、γ、α三星，我国古代天文学称为“娄宿三星”。<BR>
+      <DIV></DIV>
+      　　
+      每年12月中旬晚上八九点钟的时候，白羊<a href="10.html">座正在我</a>们头顶。这是个很暗的小星座，里面只有紧挨着的2.3m的α星和2.7m的β星稍微显著些。 <BR>
+      <DIV></DIV>
+      　　
+      秋季星空的飞马座和仙女座的四颗星组成了一个大方框，从方框北面的两颗星引出一条直线，向东延长一倍半的距离，就可以看到白羊座了。 <BR>
+      <DIV></DIV>
+      　　
+      它是黄道星座，所以在天文学上，它的地位还是很重要的。</td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4"><h2>传说一<BR>
+      </h2>
+        <DIV></DIV>
+        　　
+        在一个古老的遥远国度中，国王和皇后因性格不和而离婚，并再取了另一名女子，可惜这位新皇后天生善于嫉妒，无法忍受国王对前妻所留下的一双子女的百般疼爱，于是邪恶的阴谋逐渐在她脑中成形。<BR>
+        <DIV></DIV>
+        　　
+        春天来临，又到了播种耕种的季节，新皇后将炒熟了的麦子，发送给全国不知情的农夫。已经熟透了的麦子，无论怎样浇水、施肥，当然都无法发出芽来。被蒙在鼓里的农夫，百思不得其解。<BR>
+        <DIV></DIV>
+        　　
+        新皇后就在此时，散播有关麦子的谣言，指称麦子之所以无法发芽，是因为这个国家受到了诅咒，而受到诅咒全都是因为王子和公主的邪恶念头，引起了天怒，导致天神对国家的处罚。<BR>
+        <DIV></DIV>
+        　　
+        个性淳朴的农民们一听，天啊！这还得了！因为邪恶的王子和公主，全国的人民都将陷于贫穷饥饿的深渊中，这是一件多么可怕的事啊！<BR>
+        <DIV></DIV>
+        　　
+        很快地，全国各地不论男女、老少，都一致要求国王一定要将王子与公主处死，国家才能解开这个诅咒，平息天怒，人民的辛苦耕种才会有收获，国家也才能回复过去的安定富足。<BR>
+        <DIV></DIV>
+        　　
+        国王虽心有不舍，但为了平息众怒，只好无奈地答应了人们的要求，准备将公主与王子处死，以换得人民的信任。这个消息传到了王子公主的生母耳中，当然是又惊又怕，赶紧向伟大的天神——宙斯求助。宙斯当然知道是皇后搞的鬼，于是就答应帮忙。在行刑的当天，天空突然出现一支有着金色长毛的公羊，将王子兄妹救走，就在飞行以过大海的途中，这支公羊一个不小心，让妹妹摔下海中死掉了。<BR>
+        <DIV></DIV>
+        　　
+        后来宙斯为了奖励这支勇敢但又有些粗心的公羊，就将他高挂在天上，也就是今天大家所熟知的白羊座。<BR>
+        <DIV></DIV>
+        　　
+        <h2>传说二<BR>
+        </h2>
+        <DIV></DIV>
+        　　
+        传说特沙里亚罢黜皇后妮菲蕾，另娶伊娜为妃。伊娜虐待前妻的子女，视他们为眼中钉，必欲除之而后快。妮菲蕾获知后，向天神借了一对金色的白羊，要救两兄妹出苦海。但在逃亡过程中，妹妹历受海涛声的惊吓，不慎坠入海中溺死。最后，白羊因救人的善行，被宇宙之神宙斯放置在天上，成为白羊星座。<BR>
+        <DIV></DIV>
+        　　
+        <h2>传说三<BR>
+        </h2>
+        <DIV></DIV>
+        　　
+        <p>菲利塞思(phrixus)是奈波勒(nepele)之子，因蒙上奸污彼阿蒂斯(biadice)的不白之冤而被判处死刑。临刑之前，一直金色的公羊及时将他和妹妹海勒(helle)一起背走。不幸的是，妹妹因不胜颠簸而一时眼花落下羊背，菲利塞思则安然获救。他将公羊献给宙斯当祭礼，宙斯将它的形象化为天上的星座。后来伊阿宋为了夺走这金羊的羊毛，还展开了一段精彩的冒险故事。白羊座也被称作“牧羊座”。      </p>        </td>
+    </tr>
+    <tr>
+      <td width="539" >&nbsp;</td>
+      <td width="90"><a href="12.html">上一页 </a></td>
+      <td width="90"><a href="02.html">下一页</a></td>
+      <td width="197"><a href="index.html">首页</a></td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">白羊座（Aries）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（3月21日-4月19日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE5"><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span></span><img src="Images/248px-Aries_svg.png" width="73" height="69"></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Aries.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>

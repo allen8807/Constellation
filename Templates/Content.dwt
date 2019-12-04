@@ -1,0 +1,289 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="../celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- TemplateBeginEditable name="image" -->image<!-- TemplateEndEditable --></div>
+<div id="Layer5"><!-- TemplateBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td width="928"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+<!-- TemplateEndEditable --></div>
+<div id="Layer6"><!-- TemplateBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">摩羯座（Capricorn）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（12月22日-1月19日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2 class="STYLE5"><span class="STYLE7">星座符号：</span><img src="../Images/246px-Capricorn_svg.png" width="68" height="64"></h2></td>
+  </tr>
+</table>
+<!-- TemplateEndEditable --></div>
+<div id="Layer10"><!-- TemplateBeginEditable name="EditRegion4" --> 
+  <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/491.wma"><param name="PlayCount" value="0"></object><!-- TemplateEndEditable --></div>
+</body>
+</html>

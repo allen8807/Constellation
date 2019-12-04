@@ -1,0 +1,318 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/04.jpg"><img src="Images/04.jpg" alt="巨蟹座" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">巨蟹座在狮子座西边，长蛇头的北面，是黄道十二星座中最暗的一个，座内最亮星只有93.8m，根本看不出螃蟹的形状，这也许是因为赫剌克勒斯的一棒早把它打得粉碎的缘故。就是这样，它还紧紧地靠着长蛇，狼狈为奸呢！<BR>
+        　　
+        <DIV></DIV>       在巨蟹座中央的δ星附近（或狮子座轩辕十四和双子座β星这两颗亮星之间），眼力好的人可以看到一小团白色的雾气，我国古代称之为“积尸气”，书中描述它：“如云非云，如星非星，见气而已。”直到望远镜发明以后人们才观测到，它原来是一个星团，天文学上称为“蜂巢星团”。这个星团的成员有200多颗，距离我们520光年。 <BR>
+        <DIV></DIV>
+        　　
+        天文学上把星团分为两类，一种是武仙座中那样的“球状星团”，蜂巢星团属于另一类，叫做“疏散星团”。这类星团形状不规则，一般也都分布在银盘上。天文学家发现的银河系中的疏散星团已经超过了1000个，他们估计整个银河系中疏散星团的数目得超过10000个。<BR>
+        <DIV></DIV>
+        <h2><strong>蜂巢星团</strong><BR>
+        </h2>
+        <DIV></DIV>                鬼星团(Praesepe)是疏散星团之一，位于巨蟹座。因其位置在鬼宿而得名。又称蜂巢星团，积尸气。中国古代称为积尸气。在梅西耶星表中编号为M44。鬼星团的大小不到10秒差距，成员星200多个，总质量是太阳质量的200多倍，其中心离太阳约160秒差距，比毕星团远得多。鬼星团是一个移动星团，正远离地球而去，其速度的大小和方向都同毕星团的差不多。Galileo首次分辨出这个“朦胧的”天体，他记载道：“被称为Praesepe的星云，不只是单颗恒星，而是一团超过40颗小恒星的集合。”此后，在1764年3月4日把它加进了他的星表。M44还包含着一颗独特的蓝色恒星。在它的成员星之中，有食双星——巨蟹座TX，拥有金属吸收线的恒星——巨蟹座Epsilon，以及几颗7-8等的盾牌座Delta型变星，都处于后主星序状态的早期。参看我们提供的M44中最明亮恒星的列表。 <BR>
+        <DIV></DIV>
+        　　
+        鬼星团被Trumpler归类为I,2,r型（按照Kenneth Glyn Jones的说洗），Sky   Catalog 2000的分类为II,2,m型，G&amp;ouml;tz则将它归类为II,2,r型。 <BR>
+        <DIV></DIV>
+        　　
+      就像在有关猎户座大星云M42的描述中提到的那样，Messier将鬼星团（以及猎户座大星云M42/M43和昴星团M45一起）加入他的星表有点不同寻常，其原因也许仍然值得思考。 </td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">希腊神话里的一段故事正强调了巨蟹座特有的攻击性。<BR>
+        <DIV></DIV>
+        　　
+        这先得从赫五力说起——赫五力是宙斯与凡人生的儿子，天后赫拉三番两次要置他于死：他也是希腊最伟大的英雄，世间最壮的人。世上没有他办不到的事，连神明们都是靠着他的协助才征服了巨人人族，当然，赫五力也为神明立下许多汗马功劳。有一天他来到了麦西尼王国，正准备接受英雄式的欢迎，国王却因受到赫拉的指使，给他出一道难题——杀掉住在沼泽区的九头蛇，这事很难办，因为每砍掉一个头便会马上生出无数个头。<BR>
+        <DIV></DIV>
+        　　
+        赫五力想到一个办法——用火烧焦蛇头，就这样轻易解决了八个蛇头。眼看只剩最后一个了，赫拉在天上气得怒火中烧，“难道这次又失败了？”她不甘心啊！于是从海里叫来一支巨大的螃蟹要阻碍赫五力，巨蟹伸出了强有力的双蟹夹住赫五力的脚，但是谁都知道，赫五力是世间最壮的人啊！这支巨蟹最后仍死于他的蛮力之下。<BR>
+        <DIV></DIV>
+        　　
+      赫拉又失败了，但对巨蟹不顾一切的牺牲，却感到心有戚戚，为了感佩巨蟹的忠于使命，即使没有成功，赫拉仍将它放置在天上，也就成了巨蟹座。</td>
+    </tr>
+    <tr>
+      <td width="539">&nbsp;</td>
+       <td width="90"><a href="03.html">上一页 </a></td>
+      <td width="90"><a href="05.html">下一页</a></td>
+      <td width="197"><a href="index.html">首页</a></td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">巨蟹座（Cancer）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（6月22日-7月22日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span><img src="Images/300px-Cancer_svg.png" width="83" height="65"></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Cancer.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>

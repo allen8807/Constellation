@@ -1,0 +1,355 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/05.jpg"><img src="Images/05.jpg" alt="狮子座" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">狮子座的五帝坐一(β星)牧夫座的大角以及室女座的角宿一，组成了春季星空里很著名的“春季大三角”。<BR>
+        <DIV></DIV>       狮子座也是黄道星座。由于岁差的缘故，在四千多年前的每年六月，太阳的视运动正好经过狮子座。（现在的六月，太阳的视运动已经到了金牛座与双子座之间）那时，波斯湾古国迦勒底的人民认为，太阳是从狮子座中获得了很多热量，所以天气才变得热起来。古埃及人也有同感，因为每年的这个时候，许多狮子都迁移到尼罗河河谷中去避暑。<BR>
+        <DIV></DIV>
+        　　
+        古埃及对狮子座非常崇拜，据说，著名的狮身人面像就是由这头狮子的身体配上室女的头塑造出来的。狮子座里的星在我国古代也很受重视，我国古人把它们喻为黄帝之神，称为轩辕。 <BR>
+        <DIV></DIV>
+        　　
+        我们在春夜通过春季大三角找到了狮子座β星即五帝坐一后，它东边的一大片星，就都是狮子座的了。在狮子座中，δ、θ、β三颗星构成一个很显著的 三角形，这是狮子的后身和尾巴；从ε到α这六颗星组成了一个镰刀的形状，又象个反写的问号，这是狮子的头，连接大熊座的指极星（即勺口的两颗星）向与北极星相反的方向延伸，就可以找到它。α星我国叫轩辕十四，它的视星等为1.35m，位于狮子座心脏的部位，也是那个反写的问号的一点，是狮子座最亮的星，也是全天第二十一亮星。   它和大角、角宿一组成了一个等腰三角形，延长大熊座δ和γ星到十倍远的地方可以找到它。古代，航海者经常用它来确定航船在大海中的位置，所以狮子座α星又被授予“航海九星之一”的称号。<BR>
+        <DIV></DIV>
+        狮子座的轩辕十四就位于黄道附近，它和同样处在黄道附近的金牛座毕宿五、天蝎座的心宿二和南鱼座的北落师门一共四颗亮星，在天球上各相差大约90°，正好每个季节一颗，它们被合称为黄道带的“四大天王”。<BR>
+        <DIV></DIV>
+        　　
+        每年11月中旬，尤其是14、15两日的夜晚，在狮子座反写问号的ζ星附近，会有大量的流星出现，这就是著名的狮子座流星雨。它大约每33年出现一次极盛，   早在公元931年，我国五代时期就已记录了它极盛时的情景。到了1833年的极盛时每小时有上万颗。以致第二天晚上有位农夫赶紧跑到屋外，看看天上的星是不是都掉光了。<BR>
+        <DIV></DIV>
+        　　
+        狮子座流星雨在1866年还很盛，但1899年时却少多了，到1932年和1965年时只看到了不多的几颗。到1998和1999年的时候，狮子座流星雨再展雄姿，又出现了极盛期。<BR>
+        <DIV></DIV>
+        　　
+      每年11月中旬天亮前，狮子座正在中天，要想看流星雨可得早点起呀！ </td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4"><h2>传说一：<BR>
+      </h2>
+        <DIV></DIV>
+        　　
+        尼密阿是巨人堤丰和蛇妖厄格德的儿子。当人与妖相爱的时候，尼密阿就从月亮上掉了下来，是上天赐给这对夫妇一个漂亮的宝贝，家人都叫他阿尼。阿尼实际上是个半人半妖的怪物。白天他是一头凶猛的狮子，全身的皮毛闪着太阳的颜色；到了晚上，他才变成人形，是一个金发蓝眼的少年。<BR>
+        <DIV></DIV>
+        　　
+        阿尼的妹妹许德拉是一个九头蛇妖，她的上半身和人一样，而且十分美丽；下半身是蛇，月光一样的银色。
+        <DIV>        </DIV>
+        <BR>
+        <DIV></DIV>
+        　　
+        阿尼从小就深深爱着许，他们虽然有同样的父母，但阿尼是从天上掉下来的，而许是母亲厄格德自产的。许一直认为阿尼是天上的某颗星星，终归是要回到天上去的，而阿尼说，在回到天上以前愿意为许做任何事，包括死。他们于是相爱了。 <BR>
+        <DIV></DIV>
+        　　
+        然而幸福的日子很快被厄运撕碎。英雄赫五力按照神谕昭示，接受了国王的十项任务，其中两项就是杀死阿尼和许。阿尼不明白为什么神界的争斗要波及到他们，宙斯犯下的错要他们来承担。阿尼本不愿与赫五力为敌，但为了保护心上人许，他决定将赫五力挡在尼密阿大森林外。许想要阻止他前往，阿尼安慰到：“除了你，没有人能杀死我！你放心吧，我一定可以战胜这个宙斯与凡人的儿子。”说完，他只身前往去会赫五力。 <BR>
+        <DIV></DIV>
+        　　
+        许很爱阿尼，他不会让阿尼去送死，她决定在阿尼之前击退赫五力，哪怕是同归于尽。许来到阿密玛纳泉水旁迎战赫五力。然而，尽管她可以变出九个头形成咄咄逼人之势，但赫五力毕竟是一个伟大的英雄，他勇敢而果断的杀死了蛇妖许，并把随身带的箭全部浸泡在剧毒蛇血里。 <BR>
+        <DIV></DIV>
+        　　
+        傍晚，阿尼也终于找到了赫五力，他现在是一头浴血的雄狮，朝赫五力猛扑过来。赫五力拔剑与狮子战在一处，但狮子的皮毛似乎任何利器也穿不透，赫五力根本没法杀死他。天色渐渐暗了下来，赫五力想到那些浸毒的箭，于是瞄准狮子射了过去。一支、两支没有射中，第三支箭射中了狮子的心脏。那浸着许的毒血的箭一下子射进了阿尼破碎的心。狮子倒在地上变成了人。赫五力惊诧的看着阿尼，而阿尼一句话也没有说就死去了。 <BR>
+        <DIV></DIV>
+        　　
+        后来宙斯让阿尼回到了天上变成了星星，就是那个灿烂如太阳的狮子座。而属于狮子座的人类也被赋予了勇于为爱情而牺牲的性格。<BR>
+        <DIV></DIV>
+        　　
+        <h2>传说二：<BR>
+        </h2>
+        <DIV></DIV>
+        　　
+        面对挑战者，直来直往单打独斗的王者风范，是狮子座的象征，相传狮子座的由来与赫拉克勒斯有关。<BR>
+        <DIV></DIV>
+        　　
+        赫拉克勒斯是宙斯与凡人的私生子，他天生具有无比的神力，天后赫拉也因此妒火中烧。在赫拉克勒斯还是婴儿的时候，就放了两条巨蛇在摇篮里，希望咬死赫拉克勒斯，没想到赫拉克勒斯笑嘻嘻的握死了它们，从小赫拉克勒斯就被奉为“人类最伟大的英雄”。 <BR>
+        <DIV></DIV>
+        　　
+        赫拉当然不会因为一次失败就放弃杀死赫拉克勒斯，她故意让赫拉克勒斯发疯后打自己的妻子，赫拉克勒斯醒了以后十分懊悔伤心，决定要以苦行来洗清自己的罪孽，他来到麦锡尼请求国王派给他任务，谁知道国王受赫拉的指使，果然赐给他十二项难如登天的任务，必须在十二年内完成，其中之一是要杀死一头食人狮。 <BR>
+        <DIV></DIV>
+        　　
+        这头狮子平时住在森林里，赫拉克勒斯进入森林中找寻他，只是森林中一片寂静，所有的动物，小鸟、鹿、松鼠都被狮子吃得干干净净，赫拉克勒斯找累了就打起嗑睡来。就在此刻，巨狮子从一个有双重洞口的山洞中昂首而出，赫拉克勒斯睁眼一看，天啊！食人狮有一般狮子的五倍大，身上沾满了动物的鲜血，更增添了几分恐怖。赫拉克勒斯先用神箭射他，再用木棒打他，都没有用，巨狮子刀枪不入，最后赫拉克勒斯只好和狮子肉搏，过程十分惨烈，但最后还是用蛮力勒死了狮子。<BR>
+        <DIV></DIV>
+        　　
+      食人狮虽然死了，但赫拉为纪念他与赫拉克勒斯奋力而战的勇气，将食人狮丢到空中，变成了狮子座。 </td>
+    </tr>
+    <tr>
+      <td width="539">&nbsp;</td>
+       <td width="90"><a href="04.html">上一页 </a></td>
+      <td width="90"><a href="06.html">下一页</a></td>
+      <td width="197"><a href="index.html">首页</a></td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">狮子座（Leo）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（7月23日-8月22日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="st8 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: larger"><img src="Images/184px-Leo_svg.png" width="62" height="79"></span></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Leo.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>

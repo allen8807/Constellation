@@ -1,0 +1,299 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/02.jpg"><img src="Images/02.jpg" alt="金牛座" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4" >在猎户座西北方不远的天区， 有一颗非常亮的0。86m星（在全天亮星中排第十三位），它就是金牛座α星，我国古代称它为毕宿五。<BR>
+        <DIV></DIV>
+        　　
+        金牛座也是著名的黄道十二星座之一，而毕宿五就位于黄道附近，它和同样处在黄道附近的狮子座的轩辕十四、天蝎座的心宿二、南鱼座的北落师门等四颗亮星，在天球上各相差大约90°，正好每个季节一颗，它们被合称为黄道带的“四大天王”。<BR>
+        <DIV></DIV>                 金牛座中最有名的天体，就是“两星团加一星云”。连接猎户座γ星和毕宿五，向西北方延长一倍左右的距离，有一个著名的疏散星团——昴星团。眼力好的人，可以看到这个星团中的七颗亮星，所以我国古代又称它为“七簇星”。   昴星团距离我们417光年，它的直径达13光年，用大型望远镜观察， 可以发现昴星团的成员有280多颗星。另一个疏散星团叫毕星团，它是一个移动星团就位于毕宿五附近，但毕宿五并不是它的成员。   毕星团距离我们143光年，是离我们最近的星团了。毕星团用肉眼可以看到5、6颗星，实际上它的成员大约有300颗。金牛座ζ星的附近，有一个著名的大星云，英国的一位天文学家根据它的形状把它命名为“蟹状星云”。本世纪的天文学家推断出蟹状星云是1054年一次超新星爆发的产物。而1054年的超新星爆发，在我国古代天文学文献中有十分详细的记载。      </td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">有一天，天神宙斯在人间游荡，经过某个国家时，突然看见这个国家的公主非常美丽，让宙斯不知不觉中看得出了神，回到天上之后，仍然对这位美丽的公主念念不忘。而在这个公主所属的国家中，有一座很大很漂亮的牧场，里面有多到数不清的牛群在吃草、嬉戏，公主时常会来到这个牧场与这群可爱的牛群一起玩耍。就在一个风和日丽的早上，公主又依往例的出现在牧场，当她正在与牛群玩得不亦乐乎时，突然发现在牛群之中，有一只特别会唱歌的牛，它的歌声非常悦耳动听，有如天籁一般，吸引着公主不自觉的朝他走去。公主一看到这只牛，马上无法自拔的就爱上了他。因为他不仅歌声完美，就连外表也一样好的没话说。正当公主慢慢靠在牛的身上与他一起忘情的唱歌时，这只牛突然背起了公主朝着天空飞去。经过了很久的飞行，这只牛终于在一个美丽的土地上停了下来，然后摇身一变成为人，向公主表达其爱慕之意。原来这只牛就是天神宙斯的化身，因为无法抑制对公主的日夜思念，决定来向公主表白。美丽公主于是接受了宙斯的爱，两人一起回到天上生活。而宙斯为纪念那表白的地方，就以公主的名字欧罗芭做为那块土地的名字。那土地正是今天的欧洲大陆。金牛座的神话故事，是十二个星座的惟一描绘爱情的故事，打破了一般人认为金牛座缺乏浪漫的错误印象。</td>
+    </tr>
+    <tr>
+      <td width="539">&nbsp;</td>
+      <td width="90"><a href="01.html">上一页 </a></td>
+      <td width="90"><a href="03.html">下一页</a></td>
+      <td width="197"><a href="index.html">首页</a></td>
+   
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">金牛座（Taurus）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（12月22日-1月19日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span><img src="Images/225px-Taurus_svg.png" width="66" height="68"></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Taurus.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>

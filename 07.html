@@ -1,0 +1,335 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/07.jpg"><img src="Images/07.jpg" alt="天秤座" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">黄道十二宫第七宫，有时也译作“天平座”。位于室女座与天蝎座之间，正好横列在天蝎头部的前方。星座中最亮的四颗3m星α、β、γ、σ组成了一个四边形，其中氐宿四是全天唯一的一颗肉眼能看得出鲜明绿色的星，很值得仔细观测辩别一下。其中的β星又和春季大三角构成了一个大的菱形，你可以用这个办法试着找找这个星座。<BR>
+        <DIV></DIV>
+        　　
+      　每年约11月1日至11月23日太阳在天秤座中运行，立冬和小雪两个节气点就在天秤座。天秤座原先是天蝎座的一部分。尽管在古罗马以前，印度和中东文化中早就把这一部分的星叫“秤杆子”，但罗马人直到公元前1世纪的恺撒时代，才发现当太阳运行到这部分星空时，正是昼夜平分的秋分前后，因而才将这一部分星独立划出，并命名为“天秤座”。由于岁差，现在的秋分点早已移到西面的室女座了。<BR></td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4"><h2><strong>神话一</strong><BR>
+      </h2>
+        <DIV></DIV>
+        　　
+        正义女神是宙斯的女儿，海神波塞冬是宙斯的哥哥。在极为遥远的年代，人类与神一起居住在地上，过着和平快乐的日子。而正义女神和波塞冬在长时间的相处中也产生了感情，他们彼此尊重，互相爱慕。正义女神有着男子一样的气质，坚毅而热情；波塞冬像海一样深邃，冰冷。宙斯有无数的妻子，因此也有数不清的儿女，而波塞冬是他唯一的兄弟，是他和天后赫拉用泪水造出来的。不仅宙斯和天后疼爱他，神殿里所有的神祗都视如掌上明珠。正义女神却十分独立，有自己的思想。<BR>
+        <DIV></DIV>
+        　　
+        人类很聪明，他们逐渐学会了建房子、铺道路，但与此同时也学会了勾心斗角和欺骗。战争和罪恶开始在人间蔓延，许多神无法忍受纷纷回到天上居住，只有正义女神和波塞冬留了下来。女神没有对人类绝望，她认为人类终有一天会觉悟，回到过去善良纯真的本性。但是波塞冬却对人类丧失了信心，他悲观的劝女神回到天上去。女神自然不听，于是两人生平第一次争吵。他们争执得很激烈，从人类的问题上不断升级，最后竟吵到了彼此的身世上。正义女神鄙夷波塞冬不过是一滩咸水，而波塞冬则抖落出宙斯的丑闻及女神私生的事实。正义女神受到极大的侮辱，找到父亲宙斯评理。天后赫拉建议两人比赛，看谁能更让人类感受和平，谁输了谁就向对方道歉。赫拉偏爱波塞冬，又嫉妒正义女神的母亲，她知道水是生命的源泉，一定会让人类感到和平。<BR>
+        <DIV></DIV>
+        　　
+        比赛的地点设在天庭的广场，由海神先开始。只见波塞冬朝墙上一挥，裂缝中就流出了非常美的水，晶莹剔透，让人看了以后感到无限的清凉与舒适。这时候正义女神变成了一棵树，这棵树有着红褐色的树干，苍翠的绿叶以及金色的橄榄，任何人看了都感受到爱与和平。波塞冬朝女神微笑着，他知道女神的心愿终于实现了。人类认识到和平的重要，女神与波塞冬和好如初，宙斯为了纪念这样的结果，把随身带的秤往天上一抛，就有今天的天秤座。<BR>
+        <DIV></DIV>
+        　　
+        <h2><strong>神话二</strong><BR>
+        </h2>
+        <DIV></DIV>
+        　　
+        希腊神话中，众神之王宙斯有位姐姐名叫得墨忒尔，就像我国古代传说中的神农氏一样，她是希腊人民尊奉和爱戴的农神，谷物、蔬菜、水果、花草，甚至连大地涌出的泉水也归这位女神掌管。得墨忒尔深情地爱着这片土地和她的人民，她对自己的工作尽心尽责，每天都到各处巡视。她给干涸的土地带来雨露，在荒野中开辟出沃土；她使五谷丰登，百草繁茂，人们在她的帮助下过着丰衣足食的幸福时光。<BR>
+        <DIV></DIV>
+        　　
+        得墨忒尔有个女儿，名叫帕耳塞福涅。小姑娘长着一头金色的秀发，美丽而又善良，深得女神的宠爱。一天，帕耳塞福涅一个人出外游玩。农神治理下的西西里岛的山谷间，百花盛开，万物一派生机。她在溪水边漫步，在树林间游荡，摘野花，捉小虫，完全沉醉在迷离的春光中了。不知不觉间，暮色降临了。突然，天崩地裂的一声巨响，大地也随着战栗起来。猛然间，在她面前出现了一个大洞，洞中光亮耀眼，不一会儿，呼的一声跳出了一辆四匹黑马拉着的金车，顿时，金色的光芒照亮了黑暗的山谷。小姑娘被眼前的一切惊呆了。<BR>
+        <DIV></DIV>
+        　　
+        这时从车上走下一位国王，他头戴王冠，身穿皇袍，手执王杖，阴沉着铁青的脸，显得威武吓人。他来到吓得不知所措的帕耳塞福涅跟前，一把抱起她向金车走去。小姑娘拼命挣扎，大声呼唤妈妈。可是女神哪里听得见啊，山谷间只传来了凄厉的回声。国王把她抱上车，转瞬间金车就从地面上消失了，山谷重又笼罩在一片黑暗中。那个国王，就是宙斯的哥哥——冥王哈得斯，他就象我们中国所说的阎王一样，是阴间的主宰。他早就知道帕耳塞福涅的美丽，一心想得到她做妻子。这一天他终于有了机会，于是便把帕耳塞福涅强行抢回了他的地下宫殿。<BR>
+        <DIV></DIV>
+        　　
+        女神从远方巡视归来，不见了可爱的女儿，心里十分焦急。她出来寻找帕耳塞福涅的下落，一直找了九天九夜，走遍了每一个角落，也没有见到女儿的踪影。她伤心极了，一回到家中，看到女儿用过的东西，触景生情，更是勾起了无限伤感。女神只好离开家，来到一个僻静的山谷，隐居在那里的山洞中。<BR>
+        <DIV></DIV>
+        　　
+        这样一来，世间的农事无人掌管，草枯木黄，大地变得一片凋零。天上的众神也慌了神儿，大家急忙来找宙斯商量办法。宙斯就派了一位使者来到地下，求冥王放了农神的女儿。可这时候，帕耳塞福涅已经习惯了地府的生活，她做了冥国的王后，冥王十分宠爱她，日子过得很快活。当然，她毕竟还是很想念妈妈。冥王看出了她的心思，便同意神使带她回家，去看望她的母亲得墨忒尔。<BR>
+        <DIV></DIV>
+        　　
+        得知女儿又回到了家中，农神是多么高兴啊！她欢快地从洞中走出来，顿时，大地又恢复了生机，田野再次披上了绿装。人们走出家门，载歌载舞，欢庆“春天”的到来。母女俩相见，彼此都激动不已。可是，帕耳塞福涅告诉妈妈，她已经吃了冥间的食物，按规定是必须返回冥国去的。<BR>
+        <DIV></DIV>
+        　　
+        农神非常失望，但也无可奈何。大神宙斯知道了此事，他很同情姐姐的不幸遭遇，便和冥王商量，让帕耳塞福涅一年中有六个月的时间和她的妈妈团聚，剩下的半年再回到地府与冥王共同生活。这样，每当女儿回来时，农神便从山洞里回到家中，这时万物便恢复了生机，这段时间就是春夏两季；而当女儿回到地下时，农神思女心切，无心农事，回到山洞中，大地便不长谷物，树叶凋落，这就是秋季和冬季。在古希腊神话中，四季就是这样来的。<BR>
+        <DIV></DIV>
+        　　
+      春季星空中的室女座，就是农神得墨忒尔的化身。每当春天来临的时候，室女座就从东方地平线升起，而到了冬天，农神隐居在山洞里，人们就看不见她的光芒了。在古希腊神话中，农神得墨忒尔还是真理与正义的化身。她常常用一杆特制的秤来称量人们的善恶，给每个人以最正确的评判，并使好人得到报答，使坏人受到惩罚。升到天界后，农神也从没有忘记过自己的职责，于是就把那杆秤也带到了身边，这就是春季星空中紧挨着室女座的天秤座。 </td>
+    </tr>
+    <tr>
+      <td width="539">&nbsp;</td>
+      <td width="90"><a href="06.html">上一页 </a></td>
+      <td width="90"><a href="08.html">下一页</a></td>
+      <td width="197"><a href="index.html">首页</a></td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">天秤座（Libra）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（12月22日-1月19日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: larger"><img src="Images/281px-Libra_svg.png" width="77" height="64"></span></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Libra.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>

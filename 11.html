@@ -1,0 +1,362 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/11.jpg"><img src="Images/11.jpg" alt="" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">水瓶座亦名宝瓶座。<BR>
+        <DIV></DIV>
+        　　
+        水瓶座是十一月中旬的黄昏时刻，符号表示象征着流水。在南方天空可看见的星座，其排成Y字形的小星就是水瓶。星座的1月20日至2月19日期间。<BR>
+        <DIV></DIV>
+        　　
+      第十一宫，面积约980平方度。中心位置：赤经22时40分，赤纬－13度。在飞马和双鱼两座之南，南鱼座之北。α、β、θ、δ四星排成γ字形，即瓶口，ζ星是美丽的目视双星。α星和γ星，差不多在天赤道上。球状星团M2在小望远镜内即可见到。座内有亮于4等的星17颗。水瓶宫   第十一宫。黄经从300度到330度。每年1月20日前后太阳到这一宫。节气大寒。 </td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4"><h2><strong>传说1
+        
+        </strong>
+      </h2>
+        <DIV></DIV>
+        　
+        伊是一位王子。<BR>
+        <DIV></DIV>
+        　　
+        伊是特洛伊城的王子，是一位俊美不凡的少年。他的容貌是连神界都少有的。<BR>
+        <DIV></DIV>
+        　　
+        伊不爱人间的女子，他深深爱着的是宙斯神殿里一位倒水的侍女。这个平凡的侍女曾经在一个夜晚用曼妙的歌声捕获了伊的心，也夺走了特洛伊城里所有女孩的幸福。<BR>
+        <DIV></DIV>
+        　　
+        天界的那个女孩叫海伦，和特洛伊城里最美丽的女子海伦拥有同样美丽的名字。宙斯非常喜爱海伦，尽管她只是一个侍女。可是有一天，海伦无意中听到太阳神阿波罗和智慧女神雅典娜关于毁灭特洛伊城的决定，海伦不顾戒律赶去给王子伊报信。结果在半途中被发现，宙斯的侍卫们将海伦带回了神殿。宙斯不忍处死她，但决定好好惩罚她。在他的儿子阿波罗的提示下，宙斯决定将这份罪转嫁给与海伦私通的特洛伊王子身上。<BR>
+        <DIV></DIV>
+        　　
+        这天，宙斯变做一只老鹰，降临在特洛伊城的上空。他一眼就看见在后花园中散步的王子。宙斯惊呆了，他见过许多美丽的女神和绝色的凡间女子，却从来没见过如此俊美的少年。宙斯被伊特别的气质深深吸引，一个罪恶的念头油然而生。他从天空俯冲下来，一把抓起伊，将他带回了神殿。<BR>
+        <DIV></DIV>
+        　　
+        在冰冷的神殿，伊见不到家人也见不到海伦，他日渐憔悴。而宙斯却逼迫伊代替海伦为他倒水，这样他就可以天天见到这个俊美的男孩。宙斯的妻子女神赫拉是个嫉妒成性的女子，她看在眼里，怒在心头，她不仅嫉妒宙斯看伊时那样无耻的眼神，更嫉妒伊有着她都没有的美丽光华。于是赫拉心生毒计，决定加害这个无辜的王子。她偷偷将海伦放走，海伦自然要与伊私逃下界，这时她再当场将两人捉住。雅典娜明白这是赫拉的计谋，但也无能为力，被激怒的宙斯决定处死伊。然而，就在射手奇伦射出那致命一箭的刹那，侍女海伦挡在了伊的胸前！<BR>
+        <DIV></DIV>
+        　　
+        眼看奸计没能得逞，赫拉恼羞成怒之下，将伊变成了一只透明的水瓶，要他永生永世为宙斯倒水。然而，水瓶中倒出来的却是眼泪！众神无不为之动容，于是宙斯便将伊封在了天上，作一个忧伤的神灵。<BR>
+        <DIV></DIV>
+        　　
+        <h2><strong>传说2</strong><BR>
+        </h2>
+        <DIV></DIV>
+        　　
+        在特洛伊城里，住着一位俊美的王子。他的俊美容貌，连城中美女都自叹不如。<BR>
+        <DIV></DIV>
+        　　
+        有一天，神界将举办宴会，可是替宙斯倒酒的一个女孩子受伤了，所以没有人能够代替做这项工作。于是宙斯非常苦恼，不晓得该怎么办。众神看宙斯这样烦恼，很想帮忙找人代替，可是介绍来的女孩子，宙斯都不是很满意。<BR>
+        <DIV></DIV>
+        　　
+        一天，阿波罗神来到特洛伊城，看到俊美的王子正在和宫女游玩。他心想，人间竟然有如此俊美的王子，于是阿波罗回到神界，将他在特洛伊城看到的情况报告给宙斯听，宙斯觉得不可思议，很想亲眼目睹特洛伊王子。<BR>
+        <DIV></DIV>
+        　　
+        当宙斯看过特洛伊王子之后，每天就朝思暮想，于是宙斯有一种邪恶的想法在心中酝酿。<BR>
+        <DIV></DIV>
+        　　
+        宙斯又来到特洛伊城，等特洛伊王子单独行动时，宙斯变成一支大老鹰，在王子注意时，一把抓住王子回到神界。<BR>
+        <DIV></DIV>
+        　　
+        特洛伊王子来到神界，宙斯要他代替受伤的女孩为宙斯倒酒，于是王子就在无可奈何的情形下，只好待在神界。<BR>
+        <DIV></DIV>
+        　　
+        王子非常想念家乡、家人，同时特洛伊国王也非常思念王子，不知他到哪儿去了。宙斯觉得渐愧，不忍王子一天天消瘦，于是托梦给国王，告诉他王子在神界中的情形。为了安慰国王，送给国王几匹神马以为慰劳。<BR>
+        <DIV></DIV>
+        　　
+        而宙斯也让王子回去特洛伊城看国王，然后再回来神界替宙斯做倒酒的工作，特洛伊王子从此在天上变成水瓶，负责给宙斯倒酒。<BR>
+        <DIV></DIV>
+        　　
+        每当夜晚望着星空时，有没有看到一个闪耀的水瓶星象，正在为你倒酒的样子呢！<BR>
+        <DIV></DIV>
+        　　
+        <h2><strong>传说3</strong><BR>
+        </h2>
+        <DIV></DIV>
+        　　
+      本来，天界的水瓶侍者是依希腊风俗由主人Zeus未嫁的女儿青春女神Hebe公主担任的，但因为Hebe嫁给了英雄Heracles，于是水瓶侍者出缺。后来Zeus看上了   Troy王子Ganymede，便派使者前去邀请，但Ganymede 不答应。所以Zeus只好化身为一只大鹰，亲自将   Ganymede抓上山，要他担任侍酒一职。从此Ganymede 便永远成为天界的水瓶侍者了。水瓶座就是少年提着壶斟酒的形态，而水瓶中的水就是众神智慧的源泉。</td>
+    </tr>
+    <tr>
+      <td width="539">&nbsp;</td>
+     <td width="90"><a href="10.html">上一页 </a></td>
+      <td width="90"><a href="12.html">下一页</a></td>
+      <td width="197"><a href="index.html">首页</a></td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">宝瓶座（Aquarius）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（1月20日-2月18日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span><img src="Images/350px-Aquarius_svg.png" width="97" height="65"></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Aquarius.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>

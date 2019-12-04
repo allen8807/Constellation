@@ -1,0 +1,325 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/10.jpg"><img src="Images/10.jpg" alt="摩羯座" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="924" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">黄道十二星座之一，中心位置：赤经21时，赤纬-18°。位于宝瓶座和天鹰座之南，紧接人马座的东南。</td>
+    </tr>
+    <tr>
+      <td colspan="4">在秋天晚上，把织女与牛郎两星设想联接起来，向南延长同样的长度，可以看到两颗3等星，它们是摩羯的头，再从这里向东把分散的暗星联起来，成为一个底朝上的三角形，这就是摩羯座。摩羯座不是个很明亮的星座。每年约1月20日到2月18日，太阳在这个星座中运行，大寒和立春两个节气点就在摩羯座。座内亮星不多，有3等星2颗，4等星7颗。又叫“大羊座”或“山羊座”。</td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4"><h2>神话一<BR>
+      </h2>
+        <DIV></DIV>
+        　　
+    在一个众神集会的大宴中，角笛名手和竖琴名手正专心的演奏，突然轰天地裂的声音发出，恐怖的怪物出现了，众神一哄而散，角笛名手因太专注于演奏，逃晚了一步，只好变成鱼往河中跳，却因过于心慌而未能变完全，因而终身变成半羊半鱼的摩羯座了。<BR>
+    <DIV></DIV>
+    　　
+    <h2>神话二<BR>
+    </h2>
+    <DIV></DIV>
+    　　
+    野山之神潘恩以牧神身份成为牧羊人的守护神，其外表是上半身为人，下半身为山羊，因此不是很出色。但却是充满朝气活力，最爱唱歌和跳舞。有一天他在河畔巧遇仙子裘林克丝，一见钟情下欲跟踪时，裘林克丝竟惊慌而逃。潘恩穷追不舍，被追的裘林克丝乃向神祈求，突然消失踪影，只见一只芦苇在风中摇拽。失望的潘恩就摘下芦苇制成笛子，吹奏思念之歌。有天在河边设宴的众神正聆听潘恩吹奏时，突然怪物杰凡出现，众神马上化身为各种动物逃亡。慌忙的潘恩也化成鱼跳至水中，但只有下半身是鱼形，成了奇怪的模样。<BR>
+    <DIV></DIV>
+    　　
+    <h2>神话三</h2>
+   
+    <DIV></DIV>
+    　　
+    牧神潘恩长得很丑。他日日看管着宙斯的牛羊，却不敢与众神一起歌唱；他一直爱慕着神殿里弹竖琴的仙子，却不敢向她表白……这一切都只因为他丑陋的外表。潘恩害羞而自卑，也没有什么法力，在天界几乎不名一文。 <BR>
+    <DIV></DIV>
+    　　
+    没有人了解他那丑陋的外表下掩藏着的炽热的心，也没有人愿意走近他去聆听他那动人的箫声。在天河的尽头有一个湖泊，是谁也不敢涉足的，因为它的水是被诅咒过的，任何人踏进河水一步都会变成鱼，永远也变不回来。但是潘恩无所顾及，他知道即使自己在最热闹的地方也不会有人注意，还不如就在这湖泊边上吹箫，或许仙子可以听见呢！ <BR>
+    <DIV></DIV>
+    　　
+    然而有一天，正当众神设宴欢聚的时候，黑森林里的多头百眼兽却突然窜进了大厅！这只怪兽呼天哮地，排山倒海，所有的神都无法制服它，于是纷纷逃离。正弹着竖琴的仙子被吓坏了，她呆立在那里，不知道如何是好。眼看怪兽冲着仙子而去，胆小而害羞的潘恩却猛的跳了出来，他抱起仙子就跑，怪兽紧紧追赶。潘恩知道自己根本跑不过怪兽，情急之中忽然想起了天河尽头的湖泊，于是拼命的向湖泊跑去。怪兽也知道那湖泊的厉害，它暗笑潘恩的愚蠢，往那里跑岂不是自寻死路！ <BR>
+    <DIV></DIV>
+    　　
+但是怪兽万万没有想到，潘恩竟义无返顾的踏进了那个湖泊，他把仙子高高擎在手中，自己站在湖泊的中央。怪兽这下没了办法，只好放弃。等到怪兽离开以后，潘恩才小心翼翼的挪到岸边放下仙子。仙子十分感激想把潘恩拉上来，但是潘恩的下半身已经变成了鱼！宙斯以他的形象创造了魔羯座，而魔羯座的人们也像潘恩一样，严谨而内敛，对于幸福有着自己独特的理解。</td>
+    </tr>
+    <tr>
+      <td width="533" >&nbsp;</td>
+     <td width="90"><a href="09.html">上一页 </a></td>
+      <td width="90"><a href="11.html">下一页</a></td>
+      <td width="193"><a href="index.html">首页</a></td>
+    </tr>
+  </table>
+  <BR>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+  <table width="432" border="0">
+    <tr>
+      <td height="62"><h1><span class="STYLE1 STYLE2 STYLE3 STYLE4">摩羯座（Capricorn）</span></h1></td>
+    </tr>
+    <tr>
+      <td height="57"><h2 class="STYLE4">（12月22日-1月19日）</h2></td>
+    </tr>
+    <tr>
+      <td height="57"><h2><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: larger"><img src="Images/246px-Capricorn_svg.png" width="72" height="68"></span></h2></td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Capricorn.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>

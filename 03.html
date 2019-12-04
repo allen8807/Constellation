@@ -1,0 +1,349 @@
+<!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Content.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>fileTitle</title>
+<link href="celestial/css/master.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	left:581px;
+	top:223px;
+	width:206px;
+	height:188px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:91px;
+	top:16px;
+	width:336px;
+	height:51px;
+	z-index:2;
+}
+#Layer3 {
+	position:absolute;
+	width:200px;
+	height:115px;
+	z-index:3;
+	left: 46px;
+	top: 116px;
+}
+#Layer4 {
+	position:absolute;
+	left:600px;
+	top:83px;
+	width:400px;
+	height:300px;
+	z-index:3;
+}
+#Layer5 {
+	position:absolute;
+	left:69px;
+	top:408px;
+	width:931px;
+	height:240px;
+	z-index:4;
+}
+#Layer6 {
+	position:absolute;
+	left:69px;
+	top:118px;
+	width:432px;
+	height:270px;
+	z-index:5;
+}
+#Layer7 {
+	position:absolute;
+	left:76px;
+	top:852px;
+	width:825px;
+	height:278px;
+	z-index:6;
+}
+#Layer8 {
+	position:absolute;
+	left:34px;
+	top:343px;
+	width:413px;
+	height:45px;
+	z-index:7;
+}
+#Layer9 {
+	position:absolute;
+	left:35px;
+	top:567px;
+	width:186px;
+	height:16px;
+	z-index:8;
+}
+.STYLE1 {font-size: x-large}
+.STYLE4 {color: #FFFFFF}
+#Layer10 {
+	position:absolute;
+	left:69px;
+	top:3px;
+	width:365px;
+	height:70px;
+	z-index:2;
+}
+#Layer11 {
+	position:absolute;
+	left:512px;
+	top:29px;
+	width:153px;
+	height:34px;
+	z-index:6;
+}
+#Layer12 {
+	position:absolute;
+	left:27px;
+	top:294px;
+	width:227px;
+	height:103px;
+	z-index:6;
+}
+#Layer13 {
+	position:absolute;
+	left:921px;
+	top:559px;
+	width:69px;
+	height:1301px;
+	z-index:7;
+}
+.STYLE5 {font-family: "华文新魏"}
+.STYLE7 {
+	color: #FFFFFF;
+	font-size: larger;
+	font-family: "方正瘦金书简体";
+	font-weight: bold;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var no = 20; // number of hearts
+var speed = 20; // smaller number moves the hearts faster
+var heart = "Images/5.gif";
+var flag;
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width =800  , doc_height =600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width =document.body.clientWidth-50;
+doc_height = document.body.scrollHeight -100;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+amx = new Array();
+amy = new Array();
+stx = new Array();
+sty = new Array();
+flag = new Array();
+for (i = 0; i < no; ++ i) {
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-30)+10;  // set position variables
+yp[i] = Math.random()*doc_height;
+amy[i] = 12+ Math.random()*20;         // set amplitude variables
+amx[i] = 10+ Math.random()*40;
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+flag[i] = (Math.random()>0.5)?1:0;
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></layer>");
+}
+} else
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(heart+ "\" border=\"0\"></div>");
+}
+}
+}
+
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+flag[i]=(Math.random()<0.5)?1:0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+document.layers["dot"+i].top = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.layers["dot"+i].left = xp[i] + amx[i]*dx[i];
+
+}
+setTimeout("snowNS()", speed);
+}
+
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+if (yp[i] > doc_height-50) {
+xp[i] = 10+ Math.random()*(doc_width-amx[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+flag[i]=(Math.random()<0.5)?1:0;
+doc_width = document.body.clientWidth-50;
+doc_height = document.body.scrollHeight-100;
+}
+if (flag[i])
+dx[i] += stx[i];
+else
+dx[i] -= stx[i];
+if (Math.abs(dx[i]) > Math.PI) {
+yp[i]+=Math.abs(amy[i]*dx[i]);
+xp[i]+=amx[i]*dx[i];
+dx[i]=0;
+flag[i]=!flag[i];
+}
+
+document.all["dot"+i].style.pixelTop = yp[i] + amy[i]*(Math.abs(Math.sin(dx[i])+dx[i]));
+document.all["dot"+i].style.pixelLeft = xp[i] + amx[i]*dx[i];
+}
+setTimeout("snowIE()", speed);
+}
+
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<div id="Layer4"><!-- InstanceBeginEditable name="image" --><a href="Images/03.jpg"><img src="Images/03.jpg" alt="Gemini" width="400" height="300" border="0"></a><!-- InstanceEndEditable --></div>
+<div id="Layer5"><!-- InstanceBeginEditable name="tianwen" -->
+  <table width="934" border="0">
+    <tr>
+      <td colspan="4"><h1>天文知识</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4"><DIV><A href="http://imgsrc.baidu.com/baike/pic/item/c71d0e382e4a2beeb211c703.jpg" target="_blank"></A> </DIV>
+        著名的“黄道十二星座”中的一个。<BR>
+        <DIV></DIV>
+        　　
+        向东北方向延长猎户座β星和α星的连线，可以碰到两颗相距不远的亮星，其中亮一些的是双子座β星，亮度为1.14等。稍微暗点儿的是双子座α星，亮度为1.97等。从α星开始的τ、ε、μ一串星和从β星开始的δ、ζ、γ另一串星几乎平行，它们被想象成友爱的两兄弟——卡斯托尔Castor和Pollux波吕克斯。 <BR>
+        <DIV></DIV>
+        　　
+        弟弟——β星，我国古代称其为“北河三”，它反倒比哥哥——α星还亮一些，它是全天第十七亮星。哥哥——也就是α星，我国古代叫它“北河二”，是天文学史上第一颗被确认的双星。其实精确地说，它是由六颗星组成的“六合星”。有趣的是，弟弟北河三也是六合星，兄弟俩真不愧是双胞胎，长得多像啊！<BR>
+        <DIV></DIV>
+        　　
+      双子座有一个流星群，被称为双子座流星雨。它的辐射点就在α星附近，在每年12月11日前后出现，到13日是流星最盛的时候。</td>
+    </tr>
+    <tr>
+      <td colspan="4"><h1>神话故事</h1></td>
+    </tr>
+    <tr>
+      <td colspan="4">有关双子座的神话有很多版本。除了说兄弟中一个是人一个是神以外，还有说两个都是神，和两个都是人的。 中文的名字都是音译，所以翻译有很多种（比如：丽达／勒达／   Leda)。<BR>
+        <DIV></DIV>
+        　　
+        波吕克斯（Polydeuces是罗马的拼法，希腊的拼法是Pollux）。<BR>
+        <DIV></DIV>
+        　　
+        狄奥斯库里(Dioscuri):   宙斯Zeus的双生子卡斯托尔Castor和Pollux波吕克斯的总称，丽达Leda的孪生儿子，海伦Helen和克丽泰梅丝特拉Clytemnestra的兄弟。<BR>
+        <DIV></DIV>
+        　　
+               斯巴达(Sparta)王廷达柔斯(Tyndareus)被他的兄弟希波科翁(Hippocoon)逐出了他的王国，廷达柔斯流浪来到埃托利亚(Aetolia)国王忒提斯奥斯的国度，并娶了国王的女儿丽达(Leda)。后来另一英雄赫拉克勒斯(Heracles)战胜了希波科翁，将他所有儿子都杀死后，廷达柔斯就和他的妻子丽达Leda回到斯巴达统治。<BR>
+        <DIV></DIV>
+        　　
+        丽达Leda非常的美丽，宙斯Zeus看见她后就立刻爱上了她。宙斯Zeus化身为一只天鹅，依偎到美丽的Sparta斯巴达王后   丽达Leda身边。完事之后，Leda丽达生下了两颗天鹅蛋，一颗孵出 卡斯托尔Castor, 波吕克斯 Polydeuces (Pollux)   两兄弟，另一颗诞生了Clytaemnestra克丽泰梅丝特拉、及天下第一美女Helen海伦。 <BR>
+        <DIV></DIV>
+        　　
+        虽然四个兄弟姐妹是出生自同一个母亲，可是他们却有着不同的父亲。Castor卡斯托尔   及Clytaemnestra克丽泰梅丝特拉 的父亲就是原本的Sparta斯巴达国王廷达柔斯Tyndareus，而 波吕克斯Pollux及Helen海伦   的父亲才是宙斯Zeus。不过斯巴达国王对他们都如同亲生。 <BR>
+        <DIV></DIV>
+        　　
+        Helen 海伦   实在太漂亮了，追求者不知凡几，斯巴达国王不堪其扰，最後采纳奥德赛斯之建议，凡追求者必需尊重Helen   海伦的抉择，并保护Helen及她所选择的对象。最后Helen选择了Menelaus美尼劳斯/米耐劳斯，Menelaus并因此继承王位，当上了斯巴达国王。而海伦Helen的天鹅蛋姐姐Clytaemnestra嫁给了Menelaus的哥哥Mycenae迈锡尼的国王Agamemnon   阿加门农。<BR>
+        <DIV></DIV>
+        　　
+        海伦的美貌冠绝希腊，连阿提卡半岛(Attica)的英雄忒修斯(Theseus)也曾尝试去劫走她。求婚者接踵而来，而内讧争斗令廷达柔斯不知所措，最后机智的求婚者Ithaca国王Odysseus奥德修斯向廷达柔斯进言：“让海伦自己决定，并让所有求婚者起誓，他们对海伦的丈夫永不拿起武器攻击他，并且要求援时全力帮助他。”所有求婚者应允后，海伦就挑选了阿特柔斯(Atreus)的英俊儿子墨涅拉奥斯(Menelaus)。<BR>
+        <DIV></DIV>
+        　　
+        哥哥卡斯托尔Castor   的父亲是斯巴达国的国王，弟弟则是宙斯(Zeus)之子，故有不死身，虽然他们不是真正的孪生兄弟，可是二人从小一起长大，感情十分好。卡斯托尔Castor擅长战术、驯马和骑术，而波吕克斯Pollux则善于格斗和拳击。   当他们的妹妹海伦被绑架的时候，两兄弟也参加了战斗，并且跟其他英雄一起，将自己的妹妹带了回来。<BR>
+        <DIV></DIV>
+        　　
+        兄弟二人喜欢冒险，而他们的经历里面由「阿哥号」(Argo)的故事最为出名。   希腊的伊奥柯斯(Iolkos)王子杰生(Jason)长大成人后要求叔父归还王位，怎料到叔父要求杰生(Jason)到科尔奇斯(Colchis)取回金羊毛才愿意退出。于是杰生决定出征。他从各地招募50名勇士，从希腊出发。除了卡斯托尔Castor,   波吕克斯Pollux外，还有海格力斯（赫拉克勒斯的罗马名）(Hercules)、大音乐家奥菲斯(Orpheus)、医师亚斯克雷皮欧斯(Asklepios)等著名勇士同行。<BR>
+        <DIV></DIV>
+        　　
+        「阿哥号」在海上航行的时候，突然起了很大的风暴，眼看船要被卷入海里，奥菲斯(Orpheus)站在船边弹奏竖琴，向神祈求，而在这对孪生兄弟头上各有一颗大星亮了起来，赋予他们平定暴风的力量。因此，双子兄弟被奉为航海的守护神。   在经历了各种的危险后「阿哥号」平安到达，取回金羊毛给杰生(Jason)。其后二人仍向不同的冒险进发。 <BR>
+        <DIV></DIV>
+        　　
+        卡斯托尔Castor   和波吕克斯Pollux分别绑架和娶了Leucippus的两个女儿，她们分别是菲比Phoebe和   Hilaeira。据说Hilaeira一直爱着波吕克斯。可是Leucippus 的两个侄子Idas 和 Lynceus, 同时也非常的喜欢这两姐妹。因此Idas   和 Lynceus跟双子兄弟发生了冲突。在一个格斗中，Lynceus杀死了卡斯托尔Castor。 <BR>
+        <DIV></DIV>
+        　　
+        其实Idas 和   Lynceus两兄弟是双子兄弟的亲戚。（有些版本提到波吕克斯Pollux后来杀了Lynceus为哥哥报仇，而有些版本说Zeus宙斯惩罚了伤害双子兄弟的人。）<BR>
+        <DIV></DIV>
+        　　
+        卡斯托尔Castor 死后，只留下不死身   波吕克斯Pollux。于是波吕克斯Pollux向宙斯(Zeus)请求，希望能够与卡斯托尔Castor共赴黄泉。宙斯于是同意两兄弟轮流在天上和冥界生活。 <BR>
+        <DIV></DIV>
+        　　
+        庆祝双子兄弟的节日是七月十五日。古罗马还为这对双胞兄弟建立了神庙：卡斯托尔Castor   波吕克斯Pollux神庙。 <BR>
+        <DIV></DIV>
+        　　
+      双子座的两个最亮的星星就是以两兄弟的名字而命名的：卡斯托尔Castor ＆   波吕克斯Pollux，永远的双子星。</td>
+    </tr>
+    <tr>
+      <td width="539">&nbsp;</td>
+       <td width="90"><a href="02.html">上一页 </a></td>
+      <td width="90"><a href="04.html">下一页</a></td>
+      <td width="197"><a href="index.html">首页</a></td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer6"><!-- InstanceBeginEditable name="title" -->
+<table width="428" height="230" border="0">
+  <tr>
+    <td width="418" height="72"><h1 class="STYLE1"><span class="STYLE1 STYLE2 STYLE3 STYLE4">双子座（Gemini）</span></h1></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE4">（5月21日-6月21日）</span></h2></td>
+  </tr>
+  <tr>
+    <td height="75"><h2><span class="STYLE1 STYLE4" style="font-family: &quot;方正瘦金书简体&quot;; font-weight: bold; font-style: italic; font-size: large">星座符号：</span><img src="Images/229px-Gemini_svg.png" width="66" height="67"></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer10"><!-- InstanceBeginEditable name="EditRegion4" --> <object classid = "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id = "MediaPlayer1" width = "350" height="64"> 
+<param name="AutoStart" value="1"> <param name="ClickToPlay" value="1"> <param name="Filename" value="music/Gemini.mp3"><param name="PlayCount" value="0"><!-- InstanceEndEditable --></div>
+</body>
+<!-- InstanceEnd --></html>
