@@ -1,0 +1,1 @@
+cp -rf * ../apache-tomcat-8.5.47/webapps/constellation
