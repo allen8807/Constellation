@@ -261,4 +261,5 @@ width:30px;
 background:url(../images/atlogo.gif) no-repeat;
 }
 
-.tnt {Writing-mode:tb-rl;Text-align:left;font-size:9pt} 
+.tnt {Writing-mode:tb-rl; writing-mode:vertical-rl;font-size:9pt;-webkit-writing-mode: vertical-rl;}
+/*.tnt1 {font-size:9pt;-webkit-writing-mode: vertical-rl;}*/
